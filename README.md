@@ -38,6 +38,8 @@ articles = Nhkanga.scrape_feed_articles(url, 3) #=> Scrapes 3 articles
 
 Here is some sample usage of the Article object returned in the array:
 
+(category variable currently only occasionally working)
+
 ```Ruby
 1.9.3-p448 :011 > article = articles[0]
 1.9.3-p448 :012 > article.instance_variables
@@ -70,4 +72,5 @@ Here is some sample usage of the Article object returned in the array:
 5. Create new Pull Request
 
 Next major step:
+Fix category variable for Article
 Add additional news sources
