@@ -15,7 +15,6 @@ module Nhkanga
   def self.scrape_feed_articles(feed_url, iter = 0)
 
     feed = Feed.new(feed_url)
-    puts "Created feed from: #{feed_url}"
 
     articles = []
 
@@ -23,7 +22,6 @@ module Nhkanga
 
       feed.links.each do |link|
         article = self.scrape_article(link)
-        puts "Adding article to array."
         articles << article
       end
 
@@ -32,13 +30,11 @@ module Nhkanga
       iter.times do |i|
         link = feed.links[i]
         article = self.scrape_article(link)
-        puts "Adding article to array."
         articles << article
       end
 
     else
 
-      puts "Invalid iter input - please enter :all or a Fixnum"
       return
 
     end
@@ -49,7 +45,6 @@ module Nhkanga
 
   def self.scrape_article(link)
 
-    puts "Scraping link: #{link.url}"
     scraper = YahooScraper.new(link)
 
     # puts "Scraping text"

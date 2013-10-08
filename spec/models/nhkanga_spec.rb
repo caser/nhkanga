@@ -2,6 +2,15 @@ require 'spec_helper'
 
 describe Nhkanga do
 
+  before(:all) do
+
+    feed = Pages::FEED
+    pages = Pages.pages
+    FakeWeb.register_uri(:any, %r(/.xml/), :response => feed)
+    FakeWeb.register_uri(:any, %r(/rd.yahoo.co.jp), pages)
+
+  end
+
   it "should be defined" do
     Nhkanga::VERSION.should_not be_nil
   end

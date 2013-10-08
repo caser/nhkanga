@@ -4,6 +4,11 @@ describe Nhkanga::Link do
 
   before(:all) do
 
+    feed = Pages::FEED
+    pages = Pages.pages
+    FakeWeb.register_uri(:any, %r(/.xml/), :response => feed)
+    FakeWeb.register_uri(:any, %r(/rd.yahoo.co.jp), pages)
+
     @url = "http://headlines.yahoo.co.jp/rss/all-dom.xml"
     @source = 'Yahoo'
     @entry = Nhkanga::Feed.new(@url).feed.entries.first

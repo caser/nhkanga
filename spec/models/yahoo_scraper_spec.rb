@@ -4,6 +4,11 @@ describe Nhkanga::YahooScraper do
 
   before(:all) do
 
+      feed = Pages::FEED
+      pages = Pages.pages
+      FakeWeb.register_uri(:any, %r(/.xml/), :response => feed)
+      FakeWeb.register_uri(:any, %r(/rd.yahoo.co.jp), pages)
+
       @url = "http://headlines.yahoo.co.jp/rss/all-dom.xml"
       @source = 'Yahoo'
       @entry = Nhkanga::Feed.new(@url).feed.entries.first
@@ -20,7 +25,7 @@ describe Nhkanga::YahooScraper do
 
     it 'should assign the @text instance variable' do
       @yahoo_scraper.scrape_text
-      @yahoo_scraper.text.should_not be_nil
+      @yahoo_scraper.text.should_not eql("")
     end
 
   end
